@@ -17,8 +17,11 @@ $("body").keydown(function () {
 $(".btn").click(function () {
     var userChosenColour = this.id;
     userClickedPattern.push(userChosenColour);
+
     playSound(userChosenColour);
     animatePress(userChosenColour);
+
+    checkAnswer(userClickedPattern.length - 1);
 });
 
 
@@ -45,4 +48,19 @@ function animatePress(currentColour) {
     setTimeout(function () {
         $("#" + currentColour).removeClass("pressed");
     }, 100);
+}
+
+
+function checkAnswer(currentLevel) {
+    if (userClickedPattern[currentLevel] === gamePattern[currentLevel]) {
+        if (currentLevel === gamePattern.length - 1) {
+            setTimeout(function () {
+                nextSequence();
+                userClickedPattern = [];
+            }, 1000);
+        }  
+    }
+    else {
+        console.log("wrong");
+    }
 }
