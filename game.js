@@ -70,7 +70,14 @@ function checkAnswer(currentLevel) {
             $("body").removeClass("game-over");
         }, 200);
 
-        gameStarted = false;
-        level = 0;
+        startOver();
     }
+}
+
+
+function startOver () {
+    gamePattern = [];
+    userClickedPattern = [];
+    gameStarted = false;
+    level = 0;
 }
