@@ -3,6 +3,14 @@ var buttonColours = ["red", "blue", "green", "yellow"];
 var userClickedPattern = [];
 
 
+$(".btn").click(function () {
+    var userChosenColour = this.id;
+    userClickedPattern.push(userChosenColour);
+    playSound(userChosenColour);
+    animatePress(userChosenColour);
+});
+
+
 function nextSequence() {
     var randomNumber = Math.floor(Math.random() * 4);
     var randomChosenColour = buttonColours[randomNumber];
@@ -19,8 +27,9 @@ function playSound(name) {
 }
 
 
-$(".btn").click(function () {
-    var userChosenColour = this.id;
-    userClickedPattern.push(userChosenColour);
-    playSound(userChosenColour);
-});
+function animatePress(currentColour) {
+    $("#" + currentColour).addClass("pressed");
+    setTimeout(function () {
+        $("#" + currentColour).removeClass("pressed");
+    }, 100);
+}
