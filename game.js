@@ -61,6 +61,16 @@ function checkAnswer(currentLevel) {
         }  
     }
     else {
-        console.log("wrong");
+        var wrong = new Audio("sounds/wrong.mp3");
+        wrong.play();
+
+        $("#level-title").text("Game Over, Press Any Key to Restart")
+        $("body").addClass("game-over");
+        setTimeout(function () {
+            $("body").removeClass("game-over");
+        }, 200);
+
+        gameStarted = false;
+        level = 0;
     }
 }
